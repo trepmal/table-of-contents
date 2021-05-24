@@ -5,6 +5,12 @@ on: [push]
 jobs:
   test:
     name: WP ${{ matrix.wordpress }} on PHP ${{ matrix.php }}
+    # Ubuntu-20.x includes MySQL 8.0, which causes `caching_sha2_password` issues with PHP < 7.4
+    # https://www.php.net/manual/en/mysqli.requirements.php
+    # Ubuntu-18.x causes "Error: The process '/usr/bin/php' failed with exit code 255" in PHP 7.2 only
+    # Ubuntu 16.04 will lose support in August 2021
+    # https://github.com/shivammathur/setup-php/issues/452
+    # TODO: change to ubuntu-latest when we no longer support PHP < 7.4
     runs-on: ubuntu-18.04
     continue-on-error: ${{ matrix.allowed_failure }}
 
@@ -32,7 +38,7 @@ jobs:
           php-version: ${{ matrix.php }}
           coverage: pcov
           # https://make.wordpress.org/hosting/handbook/handbook/server-environment/#php-extensions
-          extensions: curl, dom, exif, fileinfo, hash, json, mbstring, mysqli, libsodium, openssl, pcre, imagick, xml, zip
+          extensions: curl, dom, exif, fileinfo, hash, json, mbstring, mysqli, openssl, pcre, imagick, xml, zip
 
       - name: Install Composer dependencies (PHP < 8.0 )
         if: ${{ matrix.php < 8.0 }}
