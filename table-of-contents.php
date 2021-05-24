@@ -1,4 +1,4 @@
-<?php //phpcs:ignore
+<?php
 /**
  * Plugin Name: Table of Contents
  * Description: Adds a table of contents to your pages based on h3 and h4 tags. Useful for documention-centric sites.
