@@ -1,3 +1,5 @@
+[![Run PHPUnit and PHPCS](https://github.com/trepmal/table-of-contents/actions/workflows/integrate.yml/badge.svg)](https://github.com/trepmal/table-of-contents/actions/workflows/integrate.yml)
+
 # Table of Contents
 
 Adds a table of contents to your pages based on h3 and h4 tags. Useful for documention-centric sites.
